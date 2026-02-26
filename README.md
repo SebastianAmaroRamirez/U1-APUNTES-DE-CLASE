@@ -58,7 +58,7 @@ La graficación por computadora es el pilar de diversas industrias modernas. Sus
 ### 🎮 Entretenimiento y Medios Digitales
 - **Videojuegos:** Renderizado en tiempo real (motores como Unreal Engine o Unity).
 
-- **Cine y Efectos** Visuales (VFX): Creación de personajes CGI, escenarios digitales y composición de video.
+- **Cine y Efectos Visuales (VFX):** Creación de personajes CGI, escenarios digitales y composición de video.
 
 - **Publicidad:** Modelado de productos y animaciones comerciales de alta fidelidad.
 
@@ -107,6 +107,7 @@ La graficación por computadora es el pilar de diversas industrias modernas. Sus
 La graficación por computadora no es más que la manipulación de datos numéricos para representar formas en un espacio bidimensional o tridimensional.
 
 **1. Geometría y Espacios de Coordenadas**
+
 Para situar un objeto, necesitamos definir su posición en un sistema de referencia.
 
 - **Coordenadas Cartesianas:** El estándar en 2D $(x, y)$ y 3D $(x, y, z)$.
@@ -114,6 +115,7 @@ Para situar un objeto, necesitamos definir su posición en un sistema de referen
 - **Coordenadas Homogéneas:** Utilizadas para facilitar las transformaciones, añadiendo una cuarta componente $w$. Un punto en 3D se representa como $(x, y, z, w)$.
 
 **2. Álgebra Lineal: Transformaciones**
+
 Las transformaciones son el corazón de la computación gráfica. Se realizan mediante la multiplicación de Matrices de Transformación:
 
 - **Traslación:** Mueve un objeto a una nueva posición.
@@ -123,6 +125,7 @@ Las transformaciones son el corazón de la computación gráfica. Se realizan me
 - **Rotación:** Gira el objeto alrededor de un eje.
 
 **3. Proyecciones**
+
 Es el proceso de convertir coordenadas 3D a una pantalla 2D:
 
 - Proyección Perspectiva: Los objetos se ven más pequeños a medida que se alejan (simula el ojo humano).
@@ -130,6 +133,7 @@ Es el proceso de convertir coordenadas 3D a una pantalla 2D:
 - Proyección Ortográfica: Mantiene las dimensiones reales (ideal para planos técnicos y CAD).
 
 **4. Álgebra de Vectores**
+
 Esencial para el cálculo de iluminación y sombreado:
 
 - Producto Punto ($\cdot$): Determina el ángulo entre dos vectores (clave para saber cuánta luz recibe una superficie).
@@ -144,9 +148,9 @@ Los modelos de color son sistemas matemáticos que nos permiten representar los 
 ### 🔴 Modelo RGB (Red, Green, Blue)
 Es un modelo aditivo (la suma de colores produce blanco). Es el estándar para todo lo que tenga una pantalla (monitores, móviles, proyectores).
 
-- Uso: Gráficos digitales, web, videojuegos.
+- **Uso:** Gráficos digitales, web, videojuegos.
 
-- Componentes: Cada color se define por la intensidad de Rojo, Verde y Azul, usualmente en rangos de $0$  a  $255$.
+- **Componentes:** Cada color se define por la intensidad de Rojo, Verde y Azul, usualmente en rangos de $0$  a  $255$.
 
 ### 🔵 Modelo CMY / CMYK (Cyan, Magenta, Yellow, Black)
 Es un modelo sustractivo (la suma de colores produce negro). Es el estándar para medios físicos.
@@ -199,10 +203,10 @@ Para representar polígonos, se utilizan dos enfoques principales:
 
 - **Relleno de Polígonos (Scan-line Fill):** Se recorre la pantalla fila por fila y se activan los píxeles que están "dentro" de las fronteras del polígono.
 
-### 1.5.1 Formatos de imagen
+## 1.5.1 Formatos de imagen
 *(PNG, JPG, BMP, SVG)*
 
-### 1.6 Procesamiento de mapas de bits
+## 1.6 Procesamiento de mapas de bits
 Un mapa de bits (o raster) es una estructura de datos que representa una rejilla rectangular de píxeles. El procesamiento consiste en aplicar funciones matemáticas a estos píxeles para alterar la imagen original.
 
 **1. Estructura de un Píxel**
