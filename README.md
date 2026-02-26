@@ -437,6 +437,17 @@ Modifican la posición de los píxeles en el mapa:
 
 - Escalamiento: Requiere técnicas de interpolación (bilineal o bicúbica) para rellenar los "huecos" que se crean al agrandar una imagen.
 
+---
 
+## Bibliografías APA
 
+- Sutori. (s. f.). Sutori. https://www.sutori.com/es/historia/historia-y-evolucion-de-la-graficacion-por-computadora--HWxiLPJRpHqkjwYoadxpmheZ
+
+- Client challenge. (s. f.). https://es.slideshare.net/slideshow/1-2-areas-de-aplicacion-de-la-graficacion-por-computadora-pdf/282295469
+
+- Client challenge. (s. f.-b). https://es.slideshare.net/slideshow/1-3-aspectos-matematicos-de-la-graficacion-pdf/282295700
+
+- Modelos de color RGB, CMY, HSV y HSL. (s. f.). https://graficaciontmmjc.blogspot.com/2019/03/modelos-de-color-rgb-cmy-hsv-y-hsl.html
+
+- Client challenge. (s. f.-c). https://es.slideshare.net/slideshow/1-6-procesamiento-de-mapas-de-bits-en-graficacion/282295902
 
