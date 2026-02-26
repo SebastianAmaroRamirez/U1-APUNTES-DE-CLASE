@@ -1,5 +1,7 @@
 # U1-APUNTES-DE-CLASE
-Temas de la Unidad 1
+
+**Temas de la Unidad 1**
+
 # 🖥️ Graficación por Computadora
 
 ## 📖 Índice de Contenidos
