@@ -204,7 +204,203 @@ Para representar polígonos, se utilizan dos enfoques principales:
 - **Relleno de Polígonos (Scan-line Fill):** Se recorre la pantalla fila por fila y se activan los píxeles que están "dentro" de las fronteras del polígono.
 
 ## 1.5.1 Formatos de imagen
-*(PNG, JPG, BMP, SVG)*
+
+**Representación y trazo de líneas y polígonos.**
+
+**Explicación de Código en Blender**
+
+**Código completo:**
+
+<img width="366" height="547" alt="image" src="https://github.com/user-attachments/assets/eb3a3efc-8e21-41d5-ae8b-c30ff9803495" />
+
+
+**1. Importación de Librerías**
+
+<img width="95" height="30" alt="image" src="https://github.com/user-attachments/assets/272544f7-4093-4ab1-bf37-ee091f93c4e7" />
+
+* **bpy:** Es la librería principal de Blender. Permite controlar la interfaz, crear objetos, materiales y mallas.
+* **math:** Proporciona funciones matemáticas esenciales.
+
+**2. Definición de la Función Principal**
+
+<img width="312" height="18" alt="image" src="https://github.com/user-attachments/assets/bf525021-a739-493e-b5df-6299cf466732" />
+
+Esta función es el "molde". Recibe tres datos:
+* **nombre:** El nombre que tendrá el objeto en tu escena.
+* **lados:** Cuántos lados tendrá el polígono (ej. 3 para un triángulo, 6 para un hexágono).
+* **radio:** Qué tan grande será la figura desde el centro hasta sus puntas.
+
+**3. Creación de la Estructura de Datos**
+
+<img width="326" height="87" alt="image" src="https://github.com/user-attachments/assets/9e717571-28a9-435d-b358-54b0fa883293" />
+
+* **Malla (Mesh):** Es el contenedor de los datos "invisibles" (puntos y líneas).
+* **Objeto:** Es la representación del ítem en la escena 3D.
+* **Link:** Esta línea es crucial; sin ella, el objeto existe en la memoria pero no aparece en tu pantalla.
+
+**4. El Motor Matemático (Cálculo de Vértices)**
+
+<img width="344" height="97" alt="image" src="https://github.com/user-attachments/assets/5ea78d90-6848-4375-8a91-1ca67c8d6ab2" />
+
+El código divide un círculo completo ($2\pi$ radianes) entre el número de lados.
+
+* Usa Coseno para calcular la posición en el eje X.
+* Usa Seno para la posición en el eje Y.
+* El eje Z se deja en 0 para que la figura sea perfectamente plana.
+
+**5. Definición de Aristas (Conexiones)**
+
+<img width="293" height="52" alt="image" src="https://github.com/user-attachments/assets/92f70768-676d-4d74-9e37-784844364494" />
+
+Este bucle le dice a Blender qué puntos debe unir con una línea. El símbolo % (módulo) asegura que el último punto se conecte de vuelta con el primero, cerrando la figura.
+
+**6. Limpieza y Ejecución**
+* **malla.from_pydata(...):** Toma todas las coordenadas y conexiones calculadas y las "inyecta" en el objeto de Blender.
+
+* **bpy.ops.object.delete():** ¡Cuidado aquí! Este bloque borra todo lo que haya en tu escena de Blender antes de crear el polígono para que la vista esté limpia.
+
+* Llamada a la función: Es donde eliges qué quieres crear. En tu imagen, está configurado para un Hexágono **(lados=6)** de tamaño 5 **(radio=5)**.
+
+**Al ejecutar el Scrips tendremos como resultado el Polígono:**
+
+<img width="296" height="191" alt="image" src="https://github.com/user-attachments/assets/282a0b30-017e-4f35-8eaa-1f6cde9c38a1" />
+
+------------------------------
+
+
+
+
+
+
+
+**Práctica 1 - Flor de vida**
+--------------------------
+ **Código:**
+ 
+**1.Importación de Librerías**
+
+<img width="87" height="31" alt="image" src="https://github.com/user-attachments/assets/e15cadd6-11c5-4944-9a41-bd668f4591d4" />
+
+* **import bpy:** Es la librería principal de Blender (Blender Python). Sin ella, no podrías crear objetos, mover la cámara o cambiar materiales mediante código.
+* **import math:** Contiene funciones matemáticas. La usamos aquí principalmente para calcular el seno (sin) y coseno (cos), necesarios para posicionar objetos en un círculo.
+
+
+**2. Limpieza de la Escena**
+
+<img width="299" height="29" alt="image" src="https://github.com/user-attachments/assets/fc71b876-0d3e-4545-9e68-889ff636b284" />
+
+Esto es una buena práctica. Antes de crear figuras nuevas, el código selecciona todo lo que hay en la pantalla y lo borra. Así te aseguras de que tu escena esté vacía cada vez que ejecutas el script.
+
+
+
+
+
+
+**3. Definición de Variables (Parámetros)**
+
+<img width="130" height="48" alt="image" src="https://github.com/user-attachments/assets/f1d05360-c13e-454d-8489-abdb06fc1efd" />
+
+
+* **radio:** Es la distancia desde el centro (0,0,0) hasta donde se colocarán los otros círculos. También es el tamaño de los círculos mismos.
+* **angulo_actual:** Es el punto de partida (0 grados).
+* **paso_angular:** Indica cuánto vamos a girar para poner el siguiente círculo. Como un círculo completo tiene 360°, si saltamos de 60 en 60, pondremos exactamente 6 círculos ($360 / 60 = 6$).
+
+
+
+**4. Creación del Círculo Central**
+
+<img width="568" height="20" alt="image" src="https://github.com/user-attachments/assets/816c39e5-9401-4837-af5c-b10dd3799bf7" />
+
+
+* Esta función crea un círculo justo en el centro del mundo (0, 0, 0).
+
+* vertices=64 hace que el círculo se vea suave y no como un polígono de pocos lados.
+
+
+
+**5. El Cálculo Geométrico (Círculos 1 y 2)**
+Aquí es donde ocurre la "magia" de las coordenadas polares:
+
+<img width="360" height="32" alt="image" src="https://github.com/user-attachments/assets/ecaa50e4-c160-40bd-af90-912f45df96d0" />
+
+
+* **math.radians(angulo_actual):** Blender/Python necesitan que los ángulos estén en radianes, no en grados. Esta función hace la conversión.
+
+* **Coseno (cos):** Nos da la posición en el eje X.
+
+* **Seno (sin):** Nos da la posición en el eje Y.
+
+* Al multiplicar el resultado por el radio, obtenemos el punto exacto donde debe ir el centro del nuevo círculo para que toque perfectamente al círculo central.
+
+
+
+**6. Actualización del Ángulo**
+
+<img width="214" height="15" alt="image" src="https://github.com/user-attachments/assets/2bf59004-b55b-4042-8a68-3a141b3337ea" />
+
+
+* Para el segundo círculo, el código suma 60 a angulo_actual. Ahora angulo_actual vale 60.
+
+* Al repetir el cálculo de x e y con 60 grados, el nuevo círculo aparece desplazado, comenzando a formar el patrón de "flor".
+
+**Resultado**
+
+<img width="190" height="182" alt="image" src="https://github.com/user-attachments/assets/26198881-46d8-4774-88a9-3017b04b0330" />
+
+---
+
+ **Código con inicion del ciclo while:**
+
+<img width="709" height="457" alt="image" src="https://github.com/user-attachments/assets/90d6e124-45f6-4a2e-b4a0-b588c12a04ab" />
+
+---
+
+**1. El "Interruptor" del Ciclo (while)**
+
+La línea ```while angulo_actual < 360:``` es el corazón del código. Funciona como una pregunta constante:
+
+- **Pregunta:** "¿El ángulo actual es menor a 360?"
+
+- **Si la respuesta es SÍ:** Ejecuta todo el bloque de código que está indentado (hacia la derecha).
+
+- **Si la respuesta es NO:** Detente y termina el programa.
+
+**2. El Cálculo Matemático (Posicionamiento)**
+
+Dentro del ciclo, el código calcula dónde poner el siguiente círculo usando coordenadas polares:
+
+- ```math.radians(angulo_actual)```: Convierte tus grados (0°, 60°, 120°...) a una unidad que la computadora entiende para calcular curvas.
+
+- ```radio * math.cos(...)```: Calcula la distancia en el eje **X**.
+
+- ```radio * math.sin(...)```: Calcula la distancia en el eje **Y**.
+
+Esto asegura que cada círculo nuevo se coloque exactamente sobre el borde del círculo central, girando alrededor de él.
+
+**3. La Ejecución en Blender**
+
+```bpy.ops.mesh.primitive_circle_add(...)```:
+
+Esta es la orden de construcción. Usa los resultados de **X** e **Y** que calculamos arriba para colocar el círculo en la escena 3D. Como está dentro del ciclo, Blender recibirá esta orden 6 veces seguidas en milisegundos.
+
+**4. El "Paso" hacia adelante (Actualización)**
+
+La línea ```angulo_actual += paso_angular``` es la más importante para el control:
+
+- **Primera vuelta:** El ángulo es 0°. Al terminar, le suma 60. Ahora es 60°.
+
+- **Segunda vuelta:** El ángulo es 60°. Al terminar, suma 60. Ahora es 120°.
+
+- ... así sucesivamente hasta llegar a 360°.
+
+---
+
+**Resultado**
+
+
+<img width="268" height="239" alt="image" src="https://github.com/user-attachments/assets/77b23db2-9ae4-4aef-bf2e-4c9931a2bc47" />
+
+---
 
 ## 1.6 Procesamiento de mapas de bits
 Un mapa de bits (o raster) es una estructura de datos que representa una rejilla rectangular de píxeles. El procesamiento consiste en aplicar funciones matemáticas a estos píxeles para alterar la imagen original.
