@@ -168,7 +168,15 @@ A diferencia de RGB, estos modelos se basan en cómo los humanos percibimos el c
 
 - **Uso:** Selectores de color en software de diseño (Photoshop, Figma) y retoque fotográfico.
 
+---
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f7e7e5a3-3fe5-47af-b7ed-41b4eb6a5801" width="400" title="Evolución de la Graficación">
+  <br>
+  <em>Figura 6: Ejemplo.</em>
+</p>
+
+---
 
 
 | Modelo | Descripción |
